@@ -134,6 +134,7 @@ ${line}
   		<copy todir="${sketchbook.location}/${folder}/${project.name}">
   			<fileset dir="${project.tmp}/${project.name}">
 				<exclude name="**/core.jar"/>
+  				<exclude name="**/android.jar"/>
 			</fileset>
   		</copy> 
 	</target>
