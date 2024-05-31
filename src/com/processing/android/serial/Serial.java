@@ -54,7 +54,7 @@ public class Serial {
     private static final int USB_RECIP_INTERFACE = 0x01;
     private final int STOPBITS_1 = 1;
     private final int DATABITS_8 = 8;
-    private int baud_rate;
+    private int baudRate;
 
     /**
      * Constructor for the Serial class.
@@ -64,7 +64,7 @@ public class Serial {
      */
     public Serial(PApplet parent, int baud_rate) {
         this.context = parent.getActivity();
-        this.baud_rate = baud_rate;
+        this.baudRate = baud_rate;
         this.usbManager = (UsbManager) this.context.getSystemService(Context.USB_SERVICE);
         IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
         this.context.registerReceiver(usbReceiver, filter);
@@ -94,7 +94,7 @@ public class Serial {
 
                 UsbInterface usbInterface = usbDevice.getInterface(0);
                 usbConnection = usbManager.openDevice(usbDevice);
-                if (usbConnection == null) {
+            if (usbConnection == null) {
                     return;
                 }
 
@@ -104,10 +104,10 @@ public class Serial {
 
                 // Set line coding parameters
                 byte[] lineCoding = {
-                    (byte) (baud_rate & 0xff),
-                    (byte) ((baud_rate >> 8) & 0xff),
-                    (byte) ((baud_rate >> 16) & 0xff),
-                    (byte) ((baud_rate >> 24) & 0xff),
+                    (byte) (baudRate & 0xff),
+                    (byte) ((baudRate >> 8) & 0xff),
+                    (byte) ((baudRate >> 16) & 0xff),
+                    (byte) ((baudRate >> 24) & 0xff),
                     STOPBITS_1,
                     0,
                     (byte) DATABITS_8
